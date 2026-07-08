@@ -84,6 +84,14 @@ Reason:
 ![Alt text](./artifacts/gemini_4.png)
 ![Alt text](./artifacts/gemini_5.png)
 
+## Cases on which Agent worked fine
+![Alt text](./artifacts/working_1.png)
+
+## Cases on which I did not got correct response
+- Can I return ORD1004?
+- Is ORD1002 eligible for a return?
+- Can I get a refund for ORD1008?
+- Is ORD1016 still within the return window?
 
 ## Future Improvements
 
