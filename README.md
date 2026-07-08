@@ -1,4 +1,4 @@
-# Ecommerce_Support_Agent
+# Ecommerce_Support_Agent (CLI)
 
 ## Problem
 - We need a Personalised Chatbot for the organisation
