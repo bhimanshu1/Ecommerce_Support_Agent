@@ -79,6 +79,11 @@ Reason:
 - I already used this model in previous projects.
 - Free API, fast inference, good quality.
 
+![Alt text](./artifacts/gemini_1.png)
+![Alt text](./artifacts/gemini_2.png)
+![Alt text](./artifacts/gemini_4.png)
+![Alt text](./artifacts/gemini_5.png)
+
 
 ## Future Improvements
 
