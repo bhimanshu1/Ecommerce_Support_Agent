@@ -74,6 +74,8 @@ Policy documents are loaded from Markdown files and processed through a Retrieva
 - Performing semantic similarity search for every policy question
 - Passing only the retrieved context to Gemini for answer generation
 
+- just the policies and knowledge transformed to chunks then those chunks tranformed to numbered vector and stored in the FAISS database when you prompt you get the closest chunks of data from policies using semantic search
+
 ## Tech Stack
 
 - Python
