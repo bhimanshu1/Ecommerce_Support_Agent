@@ -14,6 +14,14 @@
 
 ## Architecture
 '''
+        User Question
+                |
+                v
+            Router
+            /    \
+        Order    RAG
+        Tool
+
         Question
             │
             ▼
