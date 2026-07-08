@@ -36,8 +36,13 @@ def route(question, vector_db):
             Status:
             {order['status']}
             """
-            return answer_policy_question(combined_question, vector_db)
+            retrieval_query = f"Return policy for {order['category']}"
 
+            return answer_policy_question(
+                combined_question,
+                vector_db,
+                retrieval_query
+            )
     order = get_order(order_id) 
     if order == None:
         return "Product Not Found" 

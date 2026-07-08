@@ -46,26 +46,21 @@ def semantic_chunk_search(query, vector_db):
     return results
 
 
-def answer_policy_question(question, vector_db):
-    chunks = semantic_chunk_search(question, vector_db)
+def answer_policy_question(question, vector_db, retrieval_query=None):
+    search_query = retrieval_query if retrieval_query else question
+    chunks = semantic_chunk_search(search_query, vector_db)    
     context = "\n\n".join(
         [doc.page_content for doc in chunks]
     )
     prompt = f"""
         You are a customer support assistant.
-
         Answer ONLY using the context below.
-
         If the answer is not present in the context, reply:
-
         "I couldn't find that information in the policy documents."
-        
         Do not make up information.
         Do not use outside knowledge.
-
         Context:
         {context}
-
         Question:
         {question}
     """
@@ -75,7 +70,6 @@ def answer_policy_question(question, vector_db):
 # results = Semantic_chunk_search("what is the return policies?");
 
 # print("\nRetrieved Chunks:\n")
-# for i, doc in enumerate(results, start=1):
 #     print("=" * 60)
 #     print(f"Result {i}")
 #     print(doc.metadata)

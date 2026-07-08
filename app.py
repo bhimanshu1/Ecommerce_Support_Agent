@@ -9,15 +9,10 @@ vector_db = rag_database_initialisation()
 # )
 
 
-# vector_db = initialize_rag()
 
 while True:
-
     question = input("\n> ")
-
     if question.lower() == "exit":
         break
-
     answer = route(question, vector_db)
-
     print("\n", answer)

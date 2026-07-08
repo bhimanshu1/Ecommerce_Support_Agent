@@ -1,0 +1,24 @@
+# Testcases
+
+@ Policy Based Questions (RAG)
+- What are your return policies?
+- How long does shipping take?
+- What payment methods do you accept?
+- How can I reset my password?
+- Can I cancel my order after it has been shipped?
+- How do I contact customer support?
+
+@ Structured Data Questions (Tool)
+- What is the status of ORD1004?
+- Show me the details of ORD1018.
+- How much did I pay for ORD1002?
+- What payment method was used for ORD1015?
+- Which product was ordered in ORD1009?
+
+@ Edge Cases:
+What is the status of ORD9999?
+Can I return ORD9999?
+Do you insure pets?
+Do you accept Bitcoin payments?
+Can I return a spaceship?
+
