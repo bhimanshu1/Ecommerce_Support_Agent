@@ -51,6 +51,29 @@ if llm says order, then use the order id and tool search to give details
 if llm says policy, then use the rag and llm to send the response
 if combined use both 
 
+## Components
+### Router (`router.py`)
+
+The router is responsible for determining how a user's query should be processed. It classifies incoming requests into one of the following categories:
+
+- **Policy Questions** – Questions about shipping, returns, payments, or account support.
+- **Order Questions** – Questions requiring structured information from the orders dataset.
+- **Combined Questions** – Questions requiring both order information and policy reasoning (basic support implemented).
+
+### 2. Order Tool (`tools.py`)
+
+The order tool provides deterministic access to the `orders.csv` dataset using Pandas.
+
+### 3. RAG Pipeline (`rag.py`)
+
+Policy documents are loaded from Markdown files and processed through a Retrieval-Augmented Generation (RAG) pipeline.
+- loading the policy documents (the markdown files in sample_data)
+- Splitting them into chunks using `RecursiveCharacterTextSplitter`
+- Generating embeddings using the Sentence Transformers embedding model (`all-MiniLM-L6-v2`)
+- Storing embeddings in a FAISS vector database
+- Performing semantic similarity search for every policy question
+- Passing only the retrieved context to Gemini for answer generation
+
 ## Tech Stack
 
 - Python
