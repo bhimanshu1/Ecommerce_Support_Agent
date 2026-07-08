@@ -13,34 +13,34 @@
 - all the .md /docs has unstructured knowledge
 
 ## Architecture
+'''
+        User Question
+                |
+                v
+            Router
+            /    \
+        Order    RAG
+        Tool
 
-User Question
-        |
-        v
-     Router
-     /    \
- Order    RAG
- Tool
-
- Question
-    │
-    ▼
-Regex detects order ID?
-    │
-    ├── No ──► POLICY (RAG)
-    │
-    └── Yes
-          │
-          ▼
-Small LLM Intent Classifier
-          │
-   ┌──────┼─────────┐
-   ▼      ▼         ▼
-ORDER   POLICY   COMBINED
-   │       │         │
-   ▼       ▼         ▼
- Tool     RAG    Tool → RAG → LLM
-
+        Question
+            │
+            ▼
+        Regex detects order ID?
+            │
+            ├── No ──► POLICY (RAG)
+            │
+            └── Yes
+                │
+                ▼
+        Small LLM Intent Classifier
+                │
+        ┌──────┼─────────┐
+        ▼      ▼         ▼
+        ORDER   POLICY   COMBINED
+        │       │         │
+        ▼       ▼         ▼
+        Tool     RAG    Tool → RAG → LLM
+'''
 ## Core Routing
 given a question we have to find whether it is a knowledge based or structured data question
 for this we are going to use an hybrid model
