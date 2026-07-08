@@ -1,1 +1,91 @@
 # Ecommerce_Support_Agent
+
+## Problem
+- We need a Personalised Chatbot for the organisation
+    - LLM's are frozen at trainings
+    - So we cannot feed them our personal/private data
+    - So instead we use RAG, which helps us to send extra pieces of information with prompt
+
+## Data-types
+- policies, company manuals = unstructured data
+- the other is structured data in databases, csv, excel = structured data
+- orders.csv here has the structured data
+- all the .md /docs has unstructured knowledge
+
+## Architecture
+
+User Question
+        |
+        v
+     Router
+     /    \
+ Order    RAG
+ Tool
+
+ Question
+    │
+    ▼
+Regex detects order ID?
+    │
+    ├── No ──► POLICY (RAG)
+    │
+    └── Yes
+          │
+          ▼
+Small LLM Intent Classifier
+          │
+   ┌──────┼─────────┐
+   ▼      ▼         ▼
+ORDER   POLICY   COMBINED
+   │       │         │
+   ▼       ▼         ▼
+ Tool     RAG    Tool → RAG → LLM
+
+## Core Routing
+given a question we have to find whether it is a knowledge based or structured data question
+for this we are going to use an hybrid model
+- first find the orderId using the "regex", to find the details about the specific order
+- ask the llm about the type of question it is = ( COMBINED, ORDER, POLICY ) = LLM output
+
+if llm says order, then use the order id and tool search to give details
+if llm says policy, then use the rag and llm to send the response
+if combined use both 
+
+## Tech Stack
+
+- Python
+- LangChain
+- FAISS
+- Gemini
+- Pandas
+
+## Chunking Strategy
+
+- RecursiveCharacterTextSplitter
+- chunk_size=500
+- overlap=100
+
+## Vector Store
+
+- The knowledge is broken down into chunks and a numbered vector is created and stored in a vector database.
+FAISS
+Reason:
+Simple, local, lightweight.
+
+## Model
+
+Gemini 2.5 Flash
+Reason:
+- I already used this model in previous projects.
+- Free API, fast inference, good quality.
+
+
+## Future Improvements
+
+- Currently the chatbot is unable to answer questions that are combined by both RAG and tools search
+    Ex: Can I return the ORD1004
+- I could work and improve on this combined types of prompts.
+- Better intent classification
+- Metadata filtering
+- Hybrid retrieval
+- Retriever caching
