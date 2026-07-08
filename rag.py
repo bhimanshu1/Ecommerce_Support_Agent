@@ -13,7 +13,6 @@ llm = ChatGoogleGenerativeAI(
     temperature=0
 )
 
-# Load documents
 # creates the rag database using the given policy knowledge(.md files)
 def rag_database_initialisation():
     loader = DirectoryLoader(
@@ -22,18 +21,18 @@ def rag_database_initialisation():
         loader_cls=TextLoader,
     )
     documents = loader.load()
-    # Split
+    # Split the documents
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100,
     )
     chunks = splitter.split_documents(documents)
     print(f"Total chunks: {len(chunks)}")
-    # Embedding model
+    # Embedding model converts the chunks into numerical vectors
     embedding_model = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
-    # Create FAISS database
+    # Create FAISS vector database to store chunks and numerical vectors for sematic search
     vector_db = FAISS.from_documents(
         chunks,
         embedding_model
